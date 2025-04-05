@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+public class FormasGeometricas {
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("=== Calculadora de Figuras Geométricas ===");
+        System.out.println("¿Qué figura desea calcular?");
+        System.out.println("1. Círculo");
+        System.out.println("2. Cuadrado");
+        System.out.println("3. Triángulo");
+        System.out.println("4. Rectángulo");
+        System.out.println("5. Pentágono");
+        System.out.print("Digite el número correspondiente (1-5): ");
+        int figura = entrada.nextInt();
+
+        System.out.println("¿Qué desea calcular?");
+        System.out.println("1. Área");
+        System.out.println("2. Perímetro");
+        System.out.print("Seleccione una opción (1-2): ");
+        int operacion = entrada.nextInt();
+
+        double resultado = 0;
+
+        switch (figura) {
+            case 1:
+                System.out.print("Ingrese el valor del radio: ");
+                double radio = entrada.nextDouble();
+                resultado = (operacion == 1) ? Math.PI * radio * radio : 2 * Math.PI * radio;
+                break;
+            case 2:
+                System.out.print("Ingrese la medida de un lado: ");
+                double lado = entrada.nextDouble();
+                resultado = (operacion == 1) ? lado * lado : 4 * lado;
+                break;
+            case 3:
+                if (operacion == 1) {
+                    System.out.print("Base: ");
+                    double base = entrada.nextDouble();
+                    System.out.print("Altura: ");
+                    double altura = entrada.nextDouble();
+                    resultado = (base * altura) / 2;
+                } else {
+                    System.out.print("Lado 1: ");
+                    double a = entrada.nextDouble();
+                    System.out.print("Lado 2: ");
+                    double b = entrada.nextDouble();
+                    System.out.print("Lado 3: ");
+                    double c = entrada.nextDouble();
+                    resultado = a + b + c;
+                }
+                break;
+            case 4:
+                System.out.print("Base: ");
+                double baseRec = entrada.nextDouble();
+                System.out.print("Altura: ");
+                double altRec = entrada.nextDouble();
+                resultado = (operacion == 1) ? baseRec * altRec : 2 * (baseRec + altRec);
+                break;
+            case 5:
+                System.out.print("Ingrese la longitud del lado: ");
+                double ladoP = entrada.nextDouble();
+                if (operacion == 1) {
+                    resultado = 0.25 * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * ladoP * ladoP;
+                } else {
+                    resultado = 5 * ladoP;
+                }
+                break;
+            default:
+                System.out.println("Figura no válida.");
+                break;
+        }
+
+        if (resultado != 0) {
+            String tipoOperacion = (operacion == 1) ? "Área" : "Perímetro";
+            System.out.printf("%s de la figura: %.2f\n", tipoOperacion, resultado);
+        }
+
+        entrada.close();
+    }
+}
